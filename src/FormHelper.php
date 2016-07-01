@@ -194,12 +194,25 @@ class FormHelper extends FormConstructor
 
         $outputselectoptions = "";
         foreach ($selectOptions as $k => $v) {
-            if (isset($options['selected']) && $v == $options['selected']) {
-                $slctd = "selected='selected'";
+            if (is_object($v)) {
+                $key = isset($options['key']) ? $options['key'] : 'id';
+                $value = isset($options['value']) ? $options['value'] : 'value';
+
+                if (isset($options['selected']) && $v->$key == $options['selected']) {
+                    $slctd = "selected='selected'";
+                } else {
+                    $slctd = "";
+                }
+                $outputselectoptions .= "<option $slctd value='{$v->$key}'>{$v->$value}</option>";
             } else {
-                $slctd = "";
+                if (isset($options['selected']) && $k == $options['selected']) {
+                    $slctd = "selected='selected'";
+                } else {
+                    $slctd = "";
+                }
+                $outputselectoptions .= "<option $slctd value='$k'>$v</option>";
             }
-            $outputselectoptions .= "<option $slctd value='$v'>$k</option>";
+
         }
 
         $this->inputs[$field]['tag'] = "<select name='$field' id='$field' $outputOptions>$outputselectoptions</select>";
