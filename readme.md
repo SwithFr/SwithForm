@@ -48,14 +48,14 @@ use Swith\Form;
 	])
 	->textarea("fieldname", "content", $options)
 	->password("fieldname", "value", $options)
-	// $select-options an array like ["id" => "valeur"] or an object
+	// $select_options an array like ["id" => "value"] or an object
 	// if it's an object you must provide an option "value" and an optional option "key"
 	// ex: $user = {id : 1, name: "Joe"}
 	// $options[
 	//     "key" => 'id' // default to id
 	//     "value" => 'name'
 	// ]
-	->select("fieldname", $select-options, $options)
+	->select("fieldname", $select_options, $options)
 	->close_fieldset()
 	->end("Send", $senbSubmitOptions)
 ```
