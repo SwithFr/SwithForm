@@ -52,3 +52,6 @@ use Swith\Form;
 	->close_fieldset()
 	->end("Send", $senbSubmitOptions)
 ```
+
+### TODO
+add other input type like date, checkbox...
