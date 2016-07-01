@@ -15,11 +15,12 @@ class FormConstructor
         "defaultInput" => [
             "class" => '',
             "noError" => false,
+            "classError" => "hasError",
         ],
         "defaultLabel" => [
             "class" => '',
             "noError" => false,
-            "errorClass" => "hasError",
+            "classError" => "hasError",
             "errorFormat" => "%MSG%",
         ],
         "errors" => null,
