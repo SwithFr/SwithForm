@@ -20,19 +20,35 @@ use Swith\Form;
         "defaultInput" => [
             "class" => '',
             "noError" => false, // manage error for input ?
-             "errorClass" => "hasError", // specific error class
+             "classError" => "hasError", // specific error class
         ],
         "defaultLabel" => [
             "class" => '',
             "noError" => false,
-            "errorClass" => "hasError",
+            "classError" => "hasError",
             "errorFormat" => "%MSG%", // Error message format (%MSG% will be replaced by the error message)
         ],
 	])
-	->text()
-	->textarear()
-	->password()
-	->select()
-	->end()
-?>
+	->text("fieldname", "value", $options)
+	->text("name", isset($user->name) ? $user->name : '', [
+		"noError" => true // don't manage error for this input
+		"label" => "Enter your name"
+		"class" => "name_input"
+	])
+	->text("login", isset($user->login) ? $user->login : '', [
+		"label" => [
+			"title" => "Enter your login"
+			"classError" => "your_specific_error_class_for_this_label"
+		]
+		"class" => "name_input"
+	])
+	->start_fieldset([
+		"class" => "whatever you want"
+		"lgend" => "My fieldset" // of course it's optional !
+	])
+	->textarea("fieldname", "content", $options)
+	->password("fieldname", "value", $options)
+	->select("fieldname", $select-options, $options)
+	->close_fieldset()
+	->end("Send", $senbSubmitOptions)
 ```
