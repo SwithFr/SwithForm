@@ -71,7 +71,10 @@ class FormConstructor
      */
     protected function setupLabel($labelOptions)
     {
-        $options = array_merge($this->options['defaultLabel'], $labelOptions);
+        $options = [];
+        if (is_array($labelOptions)) {
+            $options = array_merge($this->options['defaultLabel'], $labelOptions);
+        }
 
         $title = $this->getTitle($labelOptions);
 
