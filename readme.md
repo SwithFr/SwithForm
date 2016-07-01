@@ -5,7 +5,7 @@ Simple helper base on [Swith framework](https://github.com/SwithFr/swithMVC).
 `composer require swith/form:dev-master`
 
 ## How to use ?
-```
+```php
 require "vendor/autoload.php";
 
 use Swith\Form;
