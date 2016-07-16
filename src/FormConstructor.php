@@ -90,7 +90,7 @@ class FormConstructor
 
         $outputOptions = $this->setOptions($options, ['for', 'label', 'noError', 'noError', 'classError', 'errorFormat']);
 
-        $outputLabel = "<label for='{$this->field}' $outputOptions'>$title</label>";
+        $outputLabel = "<label for='{$this->field}' $outputOptions>$title</label>";
         return $outputLabel;
     }
 
