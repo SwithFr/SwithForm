@@ -74,6 +74,8 @@ class FormConstructor
         $options = [];
         if (is_array($labelOptions)) {
             $options = array_merge($this->options['defaultLabel'], $labelOptions);
+        } else {
+            $options = array_merge($this->options['defaultLabel'], ['title' => $labelOptions]);
         }
 
         $title = $this->getTitle($labelOptions);
@@ -88,7 +90,7 @@ class FormConstructor
             }
         }
 
-        $outputOptions = $this->setOptions($options, ['for', 'label', 'noError', 'noError', 'classError', 'errorFormat']);
+        $outputOptions = $this->setOptions($options, ['for', 'label', 'noError', 'noError', 'classError', 'errorFormat', 'title']);
 
         $outputLabel = "<label for='{$this->field}' $outputOptions>$title</label>";
         return $outputLabel;
