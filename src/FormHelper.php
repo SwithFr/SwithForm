@@ -215,7 +215,12 @@ class FormHelper extends FormConstructor
 
         }
 
-        $this->inputs[$field]['tag'] = "<select name='$field' id='$field' $outputOptions>$outputselectoptions</select>";
+        $multiple = '';
+        if (isset($selectOptions['multiple']) && $selectOptions['multiple']) {
+            $multiple= 'multiple';
+        }
+
+        $this->inputs[$field]['tag'] = "<select $multiple name='$field' id='$field' $outputOptions>$outputselectoptions</select>";
 
         return $this;
     }
