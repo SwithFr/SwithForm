@@ -192,23 +192,46 @@ class FormHelper extends FormConstructor
             $outputOptions = $this->getAllOptions($field);
         }
 
+        $multiple = '';
+        if (isset($options['multiple']) && $options['multiple']) {
+            $multiple= 'multiple';
+        }
+
         $outputselectoptions = "";
         foreach ($selectOptions as $k => $v) {
             if (is_object($v)) {
                 $key = isset($options['key']) ? $options['key'] : 'id';
                 $value = isset($options['value']) ? $options['value'] : 'value';
 
-                if (isset($options['selected']) && $v->$key == $options['selected']) {
-                    $slctd = "selected='selected'";
-                } else {
+                if ($multiple && is_array($options['selected'])) {
                     $slctd = "";
+                    foreach ($options['selected'] as $k => $selected) {
+                        if ($v->$key == $selected) {
+                            $slctd = "selected='selected'";
+                        }
+                    }
+                } else {
+                    if (isset($options['selected']) && $v->$key == $options['selected']) {
+                        $slctd = "selected='selected'";
+                    } else {
+                        $slctd = "";
+                    }
                 }
                 $outputselectoptions .= "<option $slctd value='{$v->$key}'>{$v->$value}</option>";
             } else {
-                if (isset($options['selected']) && $k == $options['selected']) {
-                    $slctd = "selected='selected'";
-                } else {
+                if ($multiple && is_array($options['selected'])) {
                     $slctd = "";
+                    foreach ($options['selected'] as $k => $selected) {
+                        if ($k == $selected) {
+                            $slctd = "selected='selected'";
+                        }
+                    }
+                } else {
+                    if (isset($options['selected']) && $k == $options['selected']) {
+                        $slctd = "selected='selected'";
+                    } else {
+                        $slctd = "";
+                    }
                 }
                 $outputselectoptions .= "<option $slctd value='$k'>$v</option>";
             }
